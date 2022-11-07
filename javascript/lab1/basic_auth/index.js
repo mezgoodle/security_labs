@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+// middleware
 app.use((req, res, next) => {
     console.log('\n=======================================================\n');
 
@@ -9,6 +10,7 @@ app.use((req, res, next) => {
     console.log('authorizationHeader', authorizationHeader);
 
     if (!authorizationHeader) {
+        // form here
         res.setHeader('WWW-Authenticate', 'Basic realm="Ukraine"');
         res.status(401);
         res.send('Unauthorized');
@@ -28,10 +30,6 @@ app.use((req, res, next) => {
         req.login = login;
         return next();
     }
-
-    res.setHeader('WWW-Authenticate', 'Basic realm="Ukraine"');
-    res.status(401);
-    res.send('Unauthorized');
 });
 
 app.get('/', (req, res) => {
