@@ -76,22 +76,17 @@ def create_access_token(data: dict, expires_delta: Union[timedelta, None] = None
     return encoded_jwt
 
 
-def get_current_user(token):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
+def get_current_user(token, request: Request):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
-            raise credentials_exception
+            return templates.TemplateResponse("login.html", {"request": request, "error": "error"})
     except JWTError:
-        raise credentials_exception
+        return templates.TemplateResponse("login.html", {"error": "error"})
     user = get_user(fake_users_db, username=username)
     if user is None:
-        raise credentials_exception
+        return templates.TemplateResponse("login.html", {"error": "error"})
     return user
 
 
@@ -100,7 +95,7 @@ def get_current_user(token):
 async def login_get(request: Request):
     token = request.cookies.get("access_token")
     if token:
-        user = get_current_user(token)
+        user = get_current_user(token, request)
     else:
         user = None
     response = templates.TemplateResponse("login.html", {"request": request, "user": user})
@@ -114,11 +109,7 @@ async def login_post(request: Request):
     password = form.get("password")
     user = authenticate_user(fake_users_db, username, password)
     if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+        return templates.TemplateResponse("login.html", {"request": request, "error": "error"})
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires

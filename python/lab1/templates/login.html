@@ -10,6 +10,9 @@
 
     <body>
         <main id="main-holder">
+            {% if error %}
+                {{error}}
+            {% endif %}
             {% if user %}
                 <a href="/logout" id="logout">Logout</a>
                 <p>Hello {{user.username}}</p>
