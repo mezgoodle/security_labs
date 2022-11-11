@@ -11,16 +11,12 @@
     <body>
         <main id="main-holder">
             {% if error %}
-                {{error}}
+                <p class="error" style="color: #8a0000">{{error}}</p>
             {% endif %}
             {% if user %}
-                <a href="/logout" id="logout">Logout</a>
-                <p>Hello {{user.username}}</p>
+                <p>Hello {{user.username}}. <a href="/logout" id="logout">Logout</a></p>
             {% else %}
             <h1 id="login-header">Login</h1>
-            <div id="login-error-msg-holder">
-                <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-            </div>
             <form id="login-form" action="/login" method="post">
                 <input type="text" id="username-field" name="username" class="login-form-field" placeholder="Username">
                 <input type="password" id="password-field" name="password" class="login-form-field" placeholder="Password">
