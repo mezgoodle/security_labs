@@ -2,9 +2,8 @@ from datetime import datetime, timedelta
 from typing import Union
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, Request, status
-from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.security import OAuth2PasswordBearer
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from jose import JWTError, jwt
@@ -35,7 +34,6 @@ class UserInDB(User):
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -44,10 +42,6 @@ templates = Jinja2Templates(directory="templates")
 
 def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
-
-
-def get_password_hash(password):
-    return pwd_context.hash(password)
 
 
 def get_user(db, username: str):
@@ -81,12 +75,12 @@ def get_current_user(token, request: Request):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
-            return templates.TemplateResponse("login.html", {"request": request, "error": "error"})
+            return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid credentials"})
     except JWTError:
-        return templates.TemplateResponse("login.html", {"error": "error"})
+        return templates.TemplateResponse("login.html", {"error": "Internal server error"})
     user = get_user(fake_users_db, username=username)
     if user is None:
-        return templates.TemplateResponse("login.html", {"error": "error"})
+        return templates.TemplateResponse("login.html", {"error": "Invalid credentials"})
     return user
 
 
@@ -109,7 +103,7 @@ async def login_post(request: Request):
     password = form.get("password")
     user = authenticate_user(fake_users_db, username, password)
     if not user:
-        return templates.TemplateResponse("login.html", {"request": request, "error": "error"})
+        return templates.TemplateResponse("login.html", {"request": request, "error": "Invalid username and/or password"})
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
         data={"sub": user.username}, expires_delta=access_token_expires
