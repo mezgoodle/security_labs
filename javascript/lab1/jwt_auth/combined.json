@@ -1,0 +1,6 @@
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-11-17 21:16:50"}
+{"level":"info","message":"Entry by authenticated user: Username","service":"user-service","timestamp":"2022-11-17 21:17:01"}
+{"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-11-17 21:17:18"}
+{"level":"error","message":"Unsuccessful login by user: Login with password ","service":"user-service","timestamp":"2022-11-17 21:17:53"}
+{"level":"info","message":"Successful login by user: Username with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6IkxvZ2luIiwiaWF0IjoxNjY4NzEyNjg0LCJleHAiOjE2Njg3MTQ0ODR9.gUFG3YH1DUPmkOpdoyB7Ow-hD7mG30ZocfgYKu4fV-s","service":"user-service","timestamp":"2022-11-17 21:18:04"}
+{"level":"info","message":"Entry by authenticated user: Username","service":"user-service","timestamp":"2022-11-17 21:18:04"}

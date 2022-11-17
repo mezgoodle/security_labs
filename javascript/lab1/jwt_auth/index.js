@@ -45,6 +45,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   if (req.username) {
+    config.logger.info(`Entry by authenticated user: ${req.username}`);
     return res.json({
       username: req.username,
       logout: "http://localhost:3000/logout",
@@ -54,6 +55,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
+  config.logger.info(`Logout by user: ${req.username}`);
   res.redirect("/");
 });
 
@@ -66,13 +68,19 @@ app.post("/api/login", (req, res) => {
 
   if (user) {
     const token = jwt_utils.generateAccessToken({ login: user.login });
-    console.log(token);
+    config.logger.info(
+      `Successful login by user: ${user.username} with token ${token}`
+    );
     res.json({ token });
+  } else {
+    config.logger.error(
+      `Unsuccessful login by user: ${login} with password ${password}`
+    );
   }
 
   res.status(401).send();
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  config.logger.info(`App listening on port ${port}`);
 });
