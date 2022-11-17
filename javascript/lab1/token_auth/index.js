@@ -5,12 +5,13 @@ const bodyParser = require("body-parser");
 const path = require("path");
 const port = 3000;
 const fs = require("fs");
+const { config } = require("../config");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const SESSION_KEY = "Authorization";
+const SESSION_KEY = config.session_key;
 
 class Session {
   #sessions = {};
@@ -103,18 +104,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-const users = [
-  {
-    login: "Login",
-    password: "Password",
-    username: "Username",
-  },
-  {
-    login: "Login1",
-    password: "Password1",
-    username: "Username1",
-  },
-];
+const users = [config.admin];
 
 app.post("/api/login", (req, res) => {
   const { login, password } = req.body;

@@ -4,23 +4,13 @@ const path = require("path");
 const port = 3000;
 const jwt_utils = require("./jwt");
 const { config } = require("../config");
+const { logger } = require("../logger");
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const users = [
-  {
-    login: "Login",
-    password: "Password",
-    username: "Username",
-  },
-  {
-    login: "Login1",
-    password: "Password1",
-    username: "Username1",
-  },
-];
+const users = [config.admin];
 
 const verifyUser = (token) => {
   const data = jwt_utils.VerifyAccessToken(token);
@@ -45,7 +35,7 @@ app.use((req, res, next) => {
 
 app.get("/", (req, res) => {
   if (req.username) {
-    config.logger.info(`Entry by authenticated user: ${req.username}`);
+    logger.info(`Entry by authenticated user: ${req.username}`);
     return res.json({
       username: req.username,
       logout: "http://localhost:3000/logout",
@@ -55,7 +45,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/logout", (req, res) => {
-  config.logger.info(`Logout by user: ${req.username}`);
+  logger.info(`Logout by user: ${req.username}`);
   res.redirect("/");
 });
 
@@ -68,12 +58,12 @@ app.post("/api/login", (req, res) => {
 
   if (user) {
     const token = jwt_utils.generateAccessToken({ login: user.login });
-    config.logger.info(
+    logger.info(
       `Successful login by user: ${user.username} with token ${token}`
     );
     res.json({ token });
   } else {
-    config.logger.error(
+    logger.error(
       `Unsuccessful login by user: ${login} with password ${password}`
     );
   }
@@ -82,5 +72,5 @@ app.post("/api/login", (req, res) => {
 });
 
 app.listen(port, () => {
-  config.logger.info(`App listening on port ${port}`);
+  logger.info(`App listening on port ${port}`);
 });
