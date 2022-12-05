@@ -7,6 +7,7 @@ import platform
 from pprint import pprint
 
 from generator import create_user_data
+from config import config
 
 
 if platform.system()=='Windows':
@@ -69,18 +70,18 @@ async def work_with_api(
 
 async def main():
     await work_with_api(
-        'https://kpi.eu.auth0.com/oauth/token',
-        'https://kpi.eu.auth0.com/api/v2/users',
-        'JIvCO5c2IBHlAe2patn6l6q5H35qxti0',
-        'ZRF8Op0tWM36p1_hxXTU-B0K_Gq_-eAVtlrQpY24CasYiDmcXBhNS6IJMNcz1EgB',
-        'https://kpi.eu.auth0.com/api/v2/'
+        config['kpi']['url_for_token'],
+        config['kpi']['url_for_users'],
+        config['kpi']['client_id'],
+        config['kpi']['client_secret'],
+        config['kpi']['audience']
     )
     await work_with_api(
-        'https://dev-b34fyn1cot22je3i.us.auth0.com/oauth/token',
-        'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users',
-        'C4dFTmHwKV8DXaXkBoCX4RLAoENBsstZ',
-        'Hiuy2N4AdwU-zezmgVKhKHhf-5TINv_82RvwpESbV25ddoUZZ88pRWBXmQVCJ7GB',
-        'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/'
+        config['myself']['url_for_token'],
+        config['myself']['url_for_users'],
+        config['myself']['client_id'],
+        config['myself']['client_secret'],
+        config['myself']['audience']
     )
 
 
