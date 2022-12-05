@@ -35,6 +35,7 @@ async def work_with_api(
     grant_type: str = 'client_credentials'
 ):
     api = API()
+
     token_data, status = await api.post(url_for_token, {
         'client_id': client_id,
         'client_secret': client_secret,
@@ -44,6 +45,7 @@ async def work_with_api(
     assert status == 200
     current_time = datetime.now()
     print(f'Getting token {token_data["access_token"]}, expires in {current_time + timedelta(seconds=token_data["expires_in"])}')
+
     data, status = await api.post(
         url_for_users,
         create_user_data(
@@ -57,8 +59,9 @@ async def work_with_api(
     )
     assert status == 201
     print(f'User with id {data["user_id"]} has been created')
+
     data = await api.get(
-        f'https://kpi.eu.auth0.com/api/v2/users/{data["user_id"]}',
+        f'{url_for_users}/{data["user_id"]}',
         {'Authorization': f'{token_data["token_type"]} {token_data["access_token"]}'}
     )
     pprint(data)
@@ -71,6 +74,13 @@ async def main():
         'JIvCO5c2IBHlAe2patn6l6q5H35qxti0',
         'ZRF8Op0tWM36p1_hxXTU-B0K_Gq_-eAVtlrQpY24CasYiDmcXBhNS6IJMNcz1EgB',
         'https://kpi.eu.auth0.com/api/v2/'
+    )
+    await work_with_api(
+        'https://dev-b34fyn1cot22je3i.us.auth0.com/oauth/token',
+        'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users',
+        'C4dFTmHwKV8DXaXkBoCX4RLAoENBsstZ',
+        'Hiuy2N4AdwU-zezmgVKhKHhf-5TINv_82RvwpESbV25ddoUZZ88pRWBXmQVCJ7GB',
+        'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/'
     )
 
 
