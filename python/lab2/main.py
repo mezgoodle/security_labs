@@ -26,19 +26,26 @@ class API:
             return await response.json(), response.status
 
 
-async def main():
+async def work_with_api(
+    url_for_token: str,
+    url_for_users: str,
+    client_id: str,
+    client_secret: str,
+    audience: str,
+    grant_type: str = 'client_credentials'
+):
     api = API()
-    token_data, status = await api.post('https://kpi.eu.auth0.com/oauth/token', {
-        'client_id': 'JIvCO5c2IBHlAe2patn6l6q5H35qxti0',
-        'client_secret': 'ZRF8Op0tWM36p1_hxXTU-B0K_Gq_-eAVtlrQpY24CasYiDmcXBhNS6IJMNcz1EgB',
-        'audience': 'https://kpi.eu.auth0.com/api/v2/',
-        'grant_type': 'client_credentials'
+    token_data, status = await api.post(url_for_token, {
+        'client_id': client_id,
+        'client_secret': client_secret,
+        'audience': audience,
+        'grant_type': grant_type
     })
     assert status == 200
     current_time = datetime.now()
-    print(f'Getting token {token_data["access_token"][:5]}..., expires in {current_time + timedelta(seconds=token_data["expires_in"])}')
+    print(f'Getting token {token_data["access_token"]}, expires in {current_time + timedelta(seconds=token_data["expires_in"])}')
     data, status = await api.post(
-        'https://kpi.eu.auth0.com/api/v2/users',
+        url_for_users,
         create_user_data(
             'mezgoodle@gmail.com',
             'Maksym',
@@ -55,6 +62,16 @@ async def main():
         {'Authorization': f'{token_data["token_type"]} {token_data["access_token"]}'}
     )
     pprint(data)
+
+
+async def main():
+    await work_with_api(
+        'https://kpi.eu.auth0.com/oauth/token',
+        'https://kpi.eu.auth0.com/api/v2/users',
+        'JIvCO5c2IBHlAe2patn6l6q5H35qxti0',
+        'ZRF8Op0tWM36p1_hxXTU-B0K_Gq_-eAVtlrQpY24CasYiDmcXBhNS6IJMNcz1EgB',
+        'https://kpi.eu.auth0.com/api/v2/'
+    )
 
 
 asyncio.run(main())
