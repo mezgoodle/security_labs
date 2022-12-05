@@ -1,2 +1,1 @@
-{"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-11-17 21:30:37"}
-{"level":"error","message":"Unsuccessful login by user: mezgoodle with password Uther","service":"user-service","timestamp":"2022-11-17 21:30:48"}
+{"level":"error","message":"Unsuccessful login by user: mezgoodle with password 1234","service":"user-service","timestamp":"2022-11-24 20:41:14"}
