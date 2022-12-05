@@ -21,7 +21,7 @@ def create_user_data(
         "name": first_name + '' + second_name if first_name else fake.name(),
         "nickname": nickname if nickname else fake.name(),
         "verify_email": 'false',
-        "picture": "pictureUrl",
+        "picture": "https://i1.wp.com/ssl.gstatic.com/s2/profiles/images/silhouette80.png?ssl=1",
         "connection":"Username-Password-Authentication",
         "password": password if password else fake.name(),
     }

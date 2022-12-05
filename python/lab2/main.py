@@ -4,6 +4,7 @@ import asyncio
 from typing import Tuple
 from datetime import datetime, timedelta
 import platform
+from pprint import pprint
 
 from generator import create_user_data
 
@@ -16,8 +17,8 @@ class API:
     def __init__(self) -> None:
         self.session = ClientSession()
 
-    async def get(self, url: str) -> dict:
-        async with self.session.get(url) as response:
+    async def get(self, url: str, headers: dict = None) -> dict:
+        async with self.session.get(url, headers=headers) as response:
             return await response.json()
 
     async def post(self, url: str, data: dict = None, headers: dict = None) -> Tuple[dict, int]:
@@ -43,12 +44,17 @@ async def main():
             'Maksym',
             'Zavalniuk',
             'mezgoodle',
-            'test_password'
+            'ftl4Guc4!D32'
         ),
         {'Authorization': f'{token_data["token_type"]} {token_data["access_token"]}'}
     )
     assert status == 201
     print(f'User with id {data["user_id"]} has been created')
+    data = await api.get(
+        f'https://kpi.eu.auth0.com/api/v2/users/{data["user_id"]}',
+        {'Authorization': f'{token_data["token_type"]} {token_data["access_token"]}'}
+    )
+    pprint(data)
 
 
 asyncio.run(main())
