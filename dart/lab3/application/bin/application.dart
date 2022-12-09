@@ -1,10 +1,9 @@
 import 'package:application/api.dart' as api;
+import 'package:application/config.dart';
 
 void main(List<String> arguments) async {
-  Map refreshTokenData = await api.getRefreshToken(
-      'https://kpi.eu.auth0.com/oauth/token',
-      'proksima.maxim1@gmail.com',
-      'TheStrongPassword123');
+  Map refreshTokenData = await api.getRefreshToken(config['KPI']['URL'],
+      config['KPI']['USERNAME'], config['KPI']['PASSWORD']);
   String refreshToken = refreshTokenData['refresh_token'];
   String firstToken = refreshTokenData['access_token'];
   print('Refresh token is: $refreshToken');
