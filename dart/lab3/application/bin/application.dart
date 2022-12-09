@@ -7,8 +7,8 @@ void main(List<String> arguments) async {
   request.bodyFields = {
     'grant_type': 'http://auth0.com/oauth/grant-type/password-realm',
     'scope': 'offline_access',
-    'username': 'mezgoodle',
-    'password': '1Max2Victor',
+    'username': 'proksima.maxim1@gmail.com',
+    'password': 'TheStrongPassword123',
     'realm': 'Username-Password-Authentication'
   };
 
