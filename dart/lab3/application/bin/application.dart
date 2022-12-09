@@ -1,8 +1,13 @@
-import 'dart:convert';
-
 import 'package:application/api.dart' as api;
 
 void main(List<String> arguments) async {
-  Map data = await api.getRefreshToken('https://kpi.eu.auth0.com/oadsth/token');
-  print(data['refresh_token']);
+  Map refreshTokenData =
+      await api.getRefreshToken('https://kpi.eu.auth0.com/oauth/token');
+  String refreshToken = refreshTokenData['refresh_token'];
+  String firstToken = refreshTokenData['access_token'];
+  print('Refresh token is: $refreshToken');
+  Map tokenData = await api.refreshToken(
+      'https://kpi.eu.auth0.com/oauth/token', refreshToken);
+  String secondToken = tokenData['access_token'];
+  print('Are the tokens are similiar - ${firstToken == secondToken}');
 }
