@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:application/config.dart';
 
 Future<Map> getRefreshToken(String url, String username, String password,
-    [String? clientId, String? clientSecret]) async {
+    [String? clientId, String? clientSecret, String? audince]) async {
   var response = await http.post(Uri.parse(url), body: {
     'grant_type': 'http://auth0.com/oauth/grant-type/password-realm',
     'scope': 'offline_access',
@@ -11,7 +11,8 @@ Future<Map> getRefreshToken(String url, String username, String password,
     'password': password,
     'realm': 'Username-Password-Authentication',
     'client_id': clientId ??= config['KPI']['CLIENT_ID'],
-    'client_secret': clientSecret ??= config['KPI']['CLIENT_SECRET']
+    'client_secret': clientSecret ??= config['KPI']['CLIENT_SECRET'],
+    'audince': audince ??= config['KPI']['AUIDENCE']
   });
 
   if (response.statusCode == 200) {
