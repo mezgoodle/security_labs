@@ -15,6 +15,7 @@ const Map config = {
     'CLIENT_ID': 'C4dFTmHwKV8DXaXkBoCX4RLAoENBsstZ',
     'CLIENT_SECRET':
         'Hiuy2N4AdwU-zezmgVKhKHhf-5TINv_82RvwpESbV25ddoUZZ88pRWBXmQVCJ7GB',
-    'AUDIENCE': 'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/'
+    'AUDIENCE': 'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/',
+    'USER_ID': 'auth0|6392f4dde4e2c1af3fd13271'
   }
 };

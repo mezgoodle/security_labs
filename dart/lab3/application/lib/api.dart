@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:application/config.dart';
 
@@ -44,6 +45,20 @@ Future<Map> getAccessToken(String url,
     'client_id': clientId ??= config['MYSELF']['CLIENT_ID'],
     'client_secret': clientSecret ??= config['MYSELF']['CLIENT_SECRET'],
     'audience': audience ??= config['MYSELF']['AUDIENCE']
+  });
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  }
+  throw Exception(
+      'Error: ${response.reasonPhrase}. Status: ${response.statusCode}');
+}
+
+Future<Map> updateUser(String url, String newPassword, String token) async {
+  var response = await http.patch(Uri.parse(url), body: {
+    'connection': 'Username-Password-Authentication',
+    'password': newPassword
+  }, headers: {
+    HttpHeaders.authorizationHeader: 'Bearer $token'
   });
   if (response.statusCode == 200) {
     return jsonDecode(response.body);

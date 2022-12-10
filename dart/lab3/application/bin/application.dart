@@ -35,5 +35,9 @@ void main(List<String> arguments) async {
 
   tokenData = await api.getAccessToken(config['MYSELF']['URL']);
   String accessToken = tokenData['access_token'];
-  print(accessToken);
+  Map newUser = await api.updateUser(
+      'https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users/${config['MYSELF']['USER_ID']}',
+      config['MYSELF']['PASSWORD'],
+      accessToken);
+  print('User has been updated at ${newUser['updated_at']}');
 }
