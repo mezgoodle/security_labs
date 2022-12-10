@@ -12,7 +12,7 @@ Future<Map> getRefreshToken(String url, String username, String password,
     'realm': 'Username-Password-Authentication',
     'client_id': clientId ??= config['KPI']['CLIENT_ID'],
     'client_secret': clientSecret ??= config['KPI']['CLIENT_SECRET'],
-    'audince': audince ??= config['KPI']['AUIDENCE']
+    'audince': audince ??= config['KPI']['AUDIENCE']
   });
 
   if (response.statusCode == 200) {
