@@ -32,4 +32,8 @@ void main(List<String> arguments) async {
   );
   secondToken = tokenData['access_token'];
   print('Are the access tokens are similiar - ${firstToken == secondToken}');
+
+  tokenData = await api.getAccessToken(config['MYSELF']['URL']);
+  String accessToken = tokenData['access_token'];
+  print(accessToken);
 }
