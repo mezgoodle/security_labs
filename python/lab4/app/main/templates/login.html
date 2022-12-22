@@ -13,12 +13,14 @@
 
       <h1 id="login-header">Login</h1>
 
+      {% if error %}
       <div id="login-error-msg-holder">
         <p id="login-error-msg">
           Invalid username
           <span id="error-msg-second-line">and/or password</span>
         </p>
       </div>
+      {% endif %}
 
       <form method="post">
         {% csrf_token %}
@@ -89,7 +91,6 @@
       color: #8a0000;
       border: 1px solid #8a0000;
       background-color: #e58f8f;
-      opacity: 0;
     }
 
     #error-msg-second-line {
