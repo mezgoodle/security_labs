@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .utils import authenticate, getUserId, getUserInfo
 
@@ -22,3 +22,10 @@ def index(request):
         user = getUserInfo(access_token, user_id)
         return render(request, "index.html", {"user": user[1]["name"]})
     return render(request, "login.html", {"error": error})
+
+
+def logout(request):
+    request.session["access_token"] = None
+    request.session["refresh_token"] = None
+    request.session["user_id"] = None
+    return redirect("/")
