@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .utils import authenticate, getUserId, getUserInfo
+from .utils import authenticate, getUserId, getUserInfo, createUser
 
 
 def index(request):
@@ -29,3 +29,22 @@ def logout(request):
     request.session["refresh_token"] = None
     request.session["user_id"] = None
     return redirect("/")
+
+
+def register(request):
+    error = False
+    if request.method == "POST":
+        data = request.POST
+        email = data.get("login")
+        password = data.get("password")
+        status, data = createUser(email, password, data.get("name"))
+        if status == 201:
+            _, token_data = authenticate(email, password)
+            request.session["access_token"] = token_data["access_token"]
+            request.session["refresh_token"] = token_data["refresh_token"]
+            request.session["user_id"] = data["user_id"]
+            return redirect("/")
+        else:
+            print(data)
+            error = True
+    return render(request, "register.html", {"error": error})

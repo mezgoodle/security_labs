@@ -41,3 +41,28 @@ def usersList():
         },
     )
     return response.json()
+
+
+def createUser(email, password, name):
+    response = requests.post(
+        "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users",
+        headers={
+            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MTcxOTMxMSwiZXhwIjoxNjcxODA1NzExLCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIHVwZGF0ZTp1c2Vyc19hcHBfbWV0YWRhdGEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.KBY-ox6UxDyVJqMQ8qMji2hhuRPKRGejpum9yeAXC2fkPlcslZcQFejQ5ydy8QtHoBqjiNsOUTYLWOirh9008EDiIvTXm6OfxdjOB9mm8NpiCzkXKJqGLsgM0vYqj02qXUE6r_3dsmEU0XmcHt4kfWI_H-Tzu_gsjItsUkhQtdsD97_XZBHUvXRUGBo6V94Sz-KxMKtDBHCAw92ZCkzivk1QakU5VVHBOgRMFWP-a0MIqY18KD1ctthTOY03Q2JN6Qkdn6mX1-L62d3Kz7e6tUDM-RR-pPiOh7TFV8jQJhJrd8WbRCRt_P1B4ADsNbst_Y2qeEpPLMoGFhZywhXHVQ"
+        },
+        data={
+            "email": email,
+            "user_metadata": {},
+            "blocked": "false",
+            "email_verified": "false",
+            "app_metadata": {},
+            "given_name": name,
+            "family_name": name,
+            "name": name,
+            "nickname": "mezgoodle",
+            "picture": "config.pictureUrl",
+            "connection": "Username-Password-Authentication",
+            "password": password,
+            "verify_email": "false",
+        },
+    )
+    return response.status_code, response.json()
