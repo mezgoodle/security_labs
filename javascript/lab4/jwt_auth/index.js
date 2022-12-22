@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const users = [config.admin];
 
-const verifyUser = (token) => {
-  const data = jwt_utils.VerifyAccessToken(token);
+const verifyUser = async (token) => {
+  const data = await jwt_utils.VerifyAccessToken(token);
   if (!data) {
     return null;
   }
@@ -23,11 +23,10 @@ const verifyUser = (token) => {
   }
   return user.username;
 };
-
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
   const sessionId = req.get(config.session_key);
 
-  req.username = verifyUser(sessionId);
+  req.username = await verifyUser(sessionId);
   req.sessionId = sessionId;
 
   next();

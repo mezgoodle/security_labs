@@ -173,7 +173,6 @@
                     password
                 }
             }).then((response) => {
-                const { username } =  response.data;
                 sessionStorage.setItem('session', JSON.stringify(response.data));
                 location.reload();
             }).catch((response) => {
