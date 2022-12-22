@@ -5,6 +5,7 @@ const port = 3000;
 const jwt_utils = require("./jwt");
 const { config } = require("../config");
 const { logger } = require("../logger");
+const { getToken } = require("./api");
 
 const app = express();
 app.use(bodyParser.json());
@@ -13,15 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const users = [config.admin];
 
 const verifyUser = async (token) => {
-  const data = await jwt_utils.VerifyAccessToken(token);
-  if (!data) {
+  const username = await jwt_utils.VerifyAccessToken(token);
+  if (!username) {
     return null;
   }
-  const user = users.find((user) => user.login == data.login);
-  if (!user) {
-    return null;
-  }
-  return user.username;
+  return username;
 };
 app.use(async (req, res, next) => {
   const sessionId = req.get(config.session_key);
@@ -48,7 +45,7 @@ app.get("/logout", (req, res) => {
   res.redirect("/");
 });
 
-app.post("/api/login", (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { login, password } = req.body;
 
   const user = users.find(
@@ -56,7 +53,7 @@ app.post("/api/login", (req, res) => {
   );
 
   if (user) {
-    const token = jwt_utils.generateAccessToken({ login: user.login });
+    const token = await jwt_utils.generateAccessToken({ login: user.login });
     logger.info(
       `Successful login by user: ${user.username} with token ${token}`
     );

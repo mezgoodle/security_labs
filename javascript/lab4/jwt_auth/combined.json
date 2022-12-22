@@ -104,3 +104,25 @@
 {"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY3MTcyNjMwOCwiZXhwIjoxNjcxNzI4MTA4fQ.icJDts-TRTRdVAp2s53Ynf1uwvX6BmSV0QJ0KO6YUSw","service":"user-service","timestamp":"2022-12-22 18:25:08"}
 {"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 18:25:18"}
 {"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:29:03"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:32:29"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavalniuk","service":"user-service","timestamp":"2022-12-22 18:32:32"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:38:54"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:39:36"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:40:37"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:41:38"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:42:26"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:43:19"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:43:49"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:59:18"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 18:59:49"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:03:16"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:04:29"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:05:01"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:06:05"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:06:55"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:07:29"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:07:35"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:08:08"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:08:40"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:12:50"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 19:13:38"}
