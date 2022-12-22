@@ -3,3 +3,23 @@
 {"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-11-24 20:40:27"}
 {"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-11-24 20:40:31"}
 {"level":"error","message":"Unsuccessful login by user: mezgoodle with password 1234","service":"user-service","timestamp":"2022-11-24 20:41:14"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 16:18:27"}
+{"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY3MTcxODczMCwiZXhwIjoxNjcxNzIwNTMwfQ.BI-DWe3iNGpgzkUi2V5z2Ko2oxVsLX3RoGKoemjh2hM","service":"user-service","timestamp":"2022-12-22 16:18:50"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:18:50"}
+{"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-12-22 16:19:35"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 16:20:37"}
+{"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-12-22 16:20:40"}
+{"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY3MTcxODg0OSwiZXhwIjoxNjcxNzIwNjQ5fQ.zdLfapJ5AQzFMkHZ-F1lLFPh9M-dGxam2WYDagrGawM","service":"user-service","timestamp":"2022-12-22 16:20:49"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:20:49"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 16:21:01"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:21:03"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:21:04"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:21:05"}
+{"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY3MTcxODg3MywiZXhwIjoxNjcxNzIwNjczfQ.a0snG_z3mZ6DOpPtT7L9xmi9nzoA7uY-HCBgBljopUI","service":"user-service","timestamp":"2022-12-22 16:21:13"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:21:13"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 16:22:50"}
+{"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY3MTcxODk4MCwiZXhwIjoxNjcxNzIwNzgwfQ.g0__g2BjG4hGPdZwYNGk7kos08j9qjHXZIhdXynnx38","service":"user-service","timestamp":"2022-12-22 16:23:00"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:23:01"}
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-12-22 16:25:01"}
+{"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY3MTcxOTEwNywiZXhwIjoxNjcxNzIwOTA3fQ.odNExex2F2E91SNhQJLWo-VJjVmG4tDf5U4oFFz7hxk","service":"user-service","timestamp":"2022-12-22 16:25:07"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-12-22 16:25:07"}

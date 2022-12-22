@@ -173,9 +173,9 @@
                     password
                 }
             }).then((response) => {
-                const { username } =  response.data;
                 sessionStorage.setItem('session', JSON.stringify(response.data));
                 location.reload();
+                console.log(response.data);
             }).catch((response) => {
                 loginErrorMsg.style.opacity = 1;
             });

@@ -61,7 +61,7 @@ app.post("/api/login", (req, res) => {
     logger.info(
       `Successful login by user: ${user.username} with token ${token}`
     );
-    res.json({ token });
+    res.json({ token, refresh_token: "dsad" });
   } else {
     logger.error(
       `Unsuccessful login by user: ${login} with password ${password}`
