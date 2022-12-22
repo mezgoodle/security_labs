@@ -1,0 +1,5 @@
+{"level":"info","message":"App listening on port 3000","service":"user-service","timestamp":"2022-11-24 20:40:18"}
+{"level":"info","message":"Successful login by user: Maksym Zavbalniuk IP-93 with token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpbiI6Im1lemdvb2RsZSIsImlhdCI6MTY2OTMxNTIyNywiZXhwIjoxNjY5MzE3MDI3fQ.1azNG-4jd9MkCl1NqXwZmP_uOL-2AhggQv03OMPz9H8","service":"user-service","timestamp":"2022-11-24 20:40:27"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-11-24 20:40:27"}
+{"level":"info","message":"Entry by authenticated user: Maksym Zavbalniuk IP-93","service":"user-service","timestamp":"2022-11-24 20:40:31"}
+{"level":"error","message":"Unsuccessful login by user: mezgoodle with password 1234","service":"user-service","timestamp":"2022-11-24 20:41:14"}

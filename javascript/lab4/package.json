@@ -1,16 +1,12 @@
 {
-  "name": "token_auth",
+  "name": "lab4",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "config.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.18.2",
-    "uuid": "^9.0.0"
-  }
+  "license": "ISC"
 }
