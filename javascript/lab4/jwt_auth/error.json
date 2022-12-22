@@ -1,3 +1,5 @@
 {"level":"error","message":"Unsuccessful login by user: mezgoodle with password 1234","service":"user-service","timestamp":"2022-11-24 20:41:14"}
 {"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-12-22 16:19:35"}
 {"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-12-22 16:20:40"}
+{"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-12-22 17:59:47"}
+{"level":"error","message":"Unsuccessful login by user:  with password ","service":"user-service","timestamp":"2022-12-22 17:59:48"}
