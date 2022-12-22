@@ -26,6 +26,19 @@ def getUserInfo(token, userId):
     return response.status_code, response.json()
 
 
+def refreshToken(token):
+    response = requests.post(
+        f"https://dev-b34fyn1cot22je3i.us.auth0.com/oauth/token",
+        data={
+            "grant_type": "refresh_token",
+            "client_id": "C4dFTmHwKV8DXaXkBoCX4RLAoENBsstZ",
+            "client_secret": "Hiuy2N4AdwU-zezmgVKhKHhf-5TINv_82RvwpESbV25ddoUZZ88pRWBXmQVCJ7GB",
+            "refresh_token": token,
+        },
+    )
+    return response.status_code, response.json()
+
+
 def getUserId(email):
     users = usersList()
     for user in users:

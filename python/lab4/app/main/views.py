@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 
-from .utils import authenticate, getUserId, getUserInfo, createUser
+from .utils import authenticate, getUserId, getUserInfo, createUser, refreshToken
 
 
 def index(request):
@@ -19,8 +19,13 @@ def index(request):
             error = True
     if access_token := request.session.get("access_token"):
         user_id = request.session["user_id"]
-        user = getUserInfo(access_token, user_id)
-        return render(request, "index.html", {"user": user[1]["name"]})
+        status, user = getUserInfo(access_token, user_id)
+        if status == 200:
+            return render(request, "index.html", {"user": user["name"]})
+        else:
+            _, data = refreshToken(request.session.get("refresh_token"))
+            request.session["access_token"] = data["access_token"]
+            return redirect("/")
     return render(request, "login.html", {"error": error})
 
 
