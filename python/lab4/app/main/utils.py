@@ -41,6 +41,7 @@ def refreshToken(token):
 
 def getUserId(email):
     users = usersList()
+    print(users)
     for user in users:
         if user["email"] == email:
             return user["user_id"]
@@ -50,7 +51,7 @@ def usersList():
     response = requests.get(
         "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users",
         headers={
-            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MTcxOTMxMSwiZXhwIjoxNjcxODA1NzExLCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIHVwZGF0ZTp1c2Vyc19hcHBfbWV0YWRhdGEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.KBY-ox6UxDyVJqMQ8qMji2hhuRPKRGejpum9yeAXC2fkPlcslZcQFejQ5ydy8QtHoBqjiNsOUTYLWOirh9008EDiIvTXm6OfxdjOB9mm8NpiCzkXKJqGLsgM0vYqj02qXUE6r_3dsmEU0XmcHt4kfWI_H-Tzu_gsjItsUkhQtdsD97_XZBHUvXRUGBo6V94Sz-KxMKtDBHCAw92ZCkzivk1QakU5VVHBOgRMFWP-a0MIqY18KD1ctthTOY03Q2JN6Qkdn6mX1-L62d3Kz7e6tUDM-RR-pPiOh7TFV8jQJhJrd8WbRCRt_P1B4ADsNbst_Y2qeEpPLMoGFhZywhXHVQ"
+            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MjIxMTE4OSwiZXhwIjoxNjcyMjExMjE5LCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.T0eCgwSV0ROGiQb0Y0YrUwqK68XqYYcaO-EhAp5yhLs7ZD-3N3WlAakqUBWSh_b824j8e2L7bXw_pKn2UBS2D2dWnvOJSnKMuffuStbyB7CCmDa2vJuXlHid_LdSO-i1V08ACrwFvVgjiytGZuKtwBvuB_WEOhRzcB94VHqaQ9YYYsOKKigUZhLpAPBpfI4JFu86smIK2Zi1GiFT1pSe1vlNIfm0Eh4k5GroyTuvlA8_pz-EDETWi0fgUjhbLi1SugugzeAfHTi3ZU9jzQ6kXGd3_-ffjyvHeE5BSvlR4K8wS8UdgoZtcA7D-Yb1e0wJ-yfZ-ZWv__EhzJbDkWrHZw"
         },
     )
     return response.json()
