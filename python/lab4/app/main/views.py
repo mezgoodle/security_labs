@@ -1,61 +1,57 @@
-from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from authlib.integrations.django_oauth2 import ResourceProtector
+import json
+from authlib.integrations.django_client import OAuth
+from django.conf import settings
+from django.shortcuts import redirect, render, redirect
+from django.urls import reverse
+from urllib.parse import quote_plus, urlencode
 
-from .utils import authenticate, getUserId, getUserInfo, createUser
-from . import validator
-from .decorators import CustomeResourceProtector
 
-require_auth = CustomeResourceProtector()
-validator = validator.Auth0JWTBearerTokenValidator(
-    "dev-b34fyn1cot22je3i.us.auth0.com",
-    "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/",
+oauth = OAuth()
+
+oauth.register(
+    "auth0",
+    client_id=settings.AUTH0_CLIENT_ID,
+    client_secret=settings.AUTH0_CLIENT_SECRET,
+    client_kwargs={
+        "scope": "openid profile email",
+    },
+    server_metadata_url=f"https://{settings.AUTH0_DOMAIN}/.well-known/openid-configuration",
 )
-require_auth.register_token_validator(validator)
 
 
-@require_auth(None)
-def index(request):
-    user = None
-    if request.method == "POST":
-        data = request.POST
-        email = data.get("login")
-        status, data = authenticate(email, data.get("password"))
-        if status == 200:
-            request.session["access_token"] = data["access_token"]
-            request.session["refresh_token"] = data["refresh_token"]
-            user_id = getUserId(email)
-            request.session["user_id"] = user_id
-        else:
-            return render(request, "login.html", {"error": "Can't authinticate"})
-    access_token = request.session.get("access_token")
-    user_id = request.session["user_id"]
-    status, user = getUserInfo(access_token, user_id)
-    if status == 200:
-        return render(request, "index.html", {"user": user["name"]})
+def login(request):
+    return oauth.auth0.authorize_redirect(
+        request, request.build_absolute_uri(reverse("callback"))
+    )
+
+
+def callback(request):
+    token = oauth.auth0.authorize_access_token(request)
+    request.session["user"] = token
+    return redirect(request.build_absolute_uri(reverse("index")))
 
 
 def logout(request):
-    del request.session["access_token"]
-    del request.session["refresh_token"]
-    del request.session["user_id"]
-    return redirect("/")
+    request.session.clear()
+
+    return redirect(
+        f"https://{settings.AUTH0_DOMAIN}/v2/logout?"
+        + urlencode(
+            {
+                "returnTo": request.build_absolute_uri(reverse("index")),
+                "client_id": settings.AUTH0_CLIENT_ID,
+            },
+            quote_via=quote_plus,
+        ),
+    )
 
 
-def register(request):
-    error = False
-    if request.method == "POST":
-        data = request.POST
-        email = data.get("login")
-        password = data.get("password")
-        status, data = createUser(email, password, data.get("name"))
-        if status == 201:
-            _, token_data = authenticate(email, password)
-            request.session["access_token"] = token_data["access_token"]
-            request.session["refresh_token"] = token_data["refresh_token"]
-            request.session["user_id"] = data["user_id"]
-            return redirect("/")
-        else:
-            print(data)
-            error = True
-    return render(request, "register.html", {"error": error})
+def index(request):
+    return render(
+        request,
+        "index.html",
+        context={
+            "session": request.session.get("user"),
+            "pretty": json.dumps(request.session.get("user"), indent=4),
+        },
+    )
