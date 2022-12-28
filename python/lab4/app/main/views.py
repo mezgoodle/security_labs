@@ -22,10 +22,6 @@ def index(request):
         status, user = getUserInfo(access_token, user_id)
         if status == 200:
             return render(request, "index.html", {"user": user["name"]})
-        else:
-            _, data = refreshToken(request.session.get("refresh_token"))
-            request.session["access_token"] = data["access_token"]
-            return redirect("/")
     return render(request, "login.html", {"error": error})
 
 

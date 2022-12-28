@@ -41,7 +41,6 @@ def refreshToken(token):
 
 def getUserId(email):
     users = usersList()
-    print(users)
     for user in users:
         if user["email"] == email:
             return user["user_id"]
@@ -51,7 +50,7 @@ def usersList():
     response = requests.get(
         "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users",
         headers={
-            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MjIxMTE4OSwiZXhwIjoxNjcyMjExMjE5LCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.T0eCgwSV0ROGiQb0Y0YrUwqK68XqYYcaO-EhAp5yhLs7ZD-3N3WlAakqUBWSh_b824j8e2L7bXw_pKn2UBS2D2dWnvOJSnKMuffuStbyB7CCmDa2vJuXlHid_LdSO-i1V08ACrwFvVgjiytGZuKtwBvuB_WEOhRzcB94VHqaQ9YYYsOKKigUZhLpAPBpfI4JFu86smIK2Zi1GiFT1pSe1vlNIfm0Eh4k5GroyTuvlA8_pz-EDETWi0fgUjhbLi1SugugzeAfHTi3ZU9jzQ6kXGd3_-ffjyvHeE5BSvlR4K8wS8UdgoZtcA7D-Yb1e0wJ-yfZ-ZWv__EhzJbDkWrHZw"
+            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MjIxOTI1NCwiZXhwIjoxNjcyMzA1MjU0LCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.bb1-ew8uACIL9WK0f0QjXg_pomgEz-CAyMXpUqlJpX1wXpkhx4xl8OoF61gn6WF6Xk-NIgW5AR2kgzGDVnujHvEII2LxexK8ptJj195hSbwbY-My3zrrWIJFw25ZE2P-WDGULMie-O7Ib688eNjIi6hWWVpobXnfs6hqgGykVG-9bLqS_YD2AvUIGWhOYdM2PEleYvPYM_A5lChXd3zg7Fh0qXzaqR8HobMAHewAgckA1ij4hA7zClrm5WER-x_PF0zH1hRWTG8N_pVeeVC62xM6t_UK5NTAKATs5I0Q_HQdMp7EGlff031nRgK0hnoHluIEwXL1FvUSlhBt2DlPLQ"
         },
     )
     return response.json()
@@ -61,7 +60,7 @@ def createUser(email, password, name):
     response = requests.post(
         "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/users",
         headers={
-            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MTcxOTMxMSwiZXhwIjoxNjcxODA1NzExLCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIHVwZGF0ZTp1c2Vyc19hcHBfbWV0YWRhdGEiLCJndHkiOiJjbGllbnQtY3JlZGVudGlhbHMifQ.KBY-ox6UxDyVJqMQ8qMji2hhuRPKRGejpum9yeAXC2fkPlcslZcQFejQ5ydy8QtHoBqjiNsOUTYLWOirh9008EDiIvTXm6OfxdjOB9mm8NpiCzkXKJqGLsgM0vYqj02qXUE6r_3dsmEU0XmcHt4kfWI_H-Tzu_gsjItsUkhQtdsD97_XZBHUvXRUGBo6V94Sz-KxMKtDBHCAw92ZCkzivk1QakU5VVHBOgRMFWP-a0MIqY18KD1ctthTOY03Q2JN6Qkdn6mX1-L62d3Kz7e6tUDM-RR-pPiOh7TFV8jQJhJrd8WbRCRt_P1B4ADsNbst_Y2qeEpPLMoGFhZywhXHVQ"
+            "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MjIxOTI1NCwiZXhwIjoxNjcyMzA1MjU0LCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.bb1-ew8uACIL9WK0f0QjXg_pomgEz-CAyMXpUqlJpX1wXpkhx4xl8OoF61gn6WF6Xk-NIgW5AR2kgzGDVnujHvEII2LxexK8ptJj195hSbwbY-My3zrrWIJFw25ZE2P-WDGULMie-O7Ib688eNjIi6hWWVpobXnfs6hqgGykVG-9bLqS_YD2AvUIGWhOYdM2PEleYvPYM_A5lChXd3zg7Fh0qXzaqR8HobMAHewAgckA1ij4hA7zClrm5WER-x_PF0zH1hRWTG8N_pVeeVC62xM6t_UK5NTAKATs5I0Q_HQdMp7EGlff031nRgK0hnoHluIEwXL1FvUSlhBt2DlPLQ"
         },
         data={
             "email": email,
