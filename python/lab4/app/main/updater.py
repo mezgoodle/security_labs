@@ -13,7 +13,10 @@ def start():
 
 def update_token():
     session = SessionStore(session_key="ezfrews0mtg9a9nzjdpg53mpyaryh3a8")
-    if refresh_token := session["refresh_token"]:
+    try:
+        refresh_token = session["refresh_token"]
         _, data = refreshToken(refresh_token)
         session["access_token"] = data["access_token"]
         session.save()
+    except KeyError:
+        pass

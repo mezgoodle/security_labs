@@ -1,5 +1,5 @@
 import functools
-from django.http import JsonResponse
+from django.shortcuts import render
 from authlib.oauth2 import (
     OAuth2Error,
     ResourceProtector as _ResourceProtector,
@@ -12,7 +12,7 @@ from authlib.oauth2.rfc6750 import BearerTokenValidator as _BearerTokenValidator
 
 
 class CustomeResourceProtector(_ResourceProtector):
-    def acquire_token(self, request, scopes=None):
+    def acquire_token(self, request, scopes=None, add_header: dict = None):
         """A method to acquire current valid token with the given scope.
 
         :param request: Django HTTP request instance
@@ -20,7 +20,14 @@ class CustomeResourceProtector(_ResourceProtector):
         :return: token object
         """
         url = request.build_absolute_uri()
-        req = HttpRequest(request.method, url, None, request.headers)
+        headers = dict(request.headers)
+        headers.update(add_header)
+        req = HttpRequest(
+            request.method,
+            url,
+            None,
+            headers,
+        )
         req.req = request
         if isinstance(scopes, str):
             scopes = [scopes]
@@ -31,27 +38,31 @@ class CustomeResourceProtector(_ResourceProtector):
         def wrapper(f):
             @functools.wraps(f)
             def decorated(request, *args, **kwargs):
-                try:
-                    token = self.acquire_token(request, scopes)
-                    request.oauth_token = token
-                except MissingAuthorizationError as error:
-                    if optional:
-                        request.oauth_token = None
-                        return f(request, *args, **kwargs)
-                    return return_error_response(error)
-                except OAuth2Error as error:
-                    return return_error_response(error)
+                if request.method != "POST":
+                    add_header = {}
+                    try:
+                        access_token = request.session["access_token"]
+                        add_header = {"Authorization": f"Bearer {access_token}"}
+                    except KeyError:
+                        pass
+                    try:
+                        token = self.acquire_token(request, scopes, add_header)
+                        request.oauth_token = token
+                    except MissingAuthorizationError:
+                        if optional:
+                            request.oauth_token = None
+                            return f(request, *args, **kwargs)
+                        return render(
+                            request, "login.html", {"error": "You need to log in"}
+                        )
+                    except OAuth2Error:
+                        return render(
+                            request,
+                            "login.html",
+                            {"error": "Your token has been expired"},
+                        )
                 return f(request, *args, **kwargs)
 
             return decorated
 
         return wrapper
-
-
-def return_error_response(error):
-    body = dict(error.get_body())
-    resp = JsonResponse(body, status=error.status_code)
-    headers = error.get_headers()
-    for k, v in headers:
-        resp[k] = v
-    return resp
