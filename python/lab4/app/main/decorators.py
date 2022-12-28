@@ -8,7 +8,6 @@ from authlib.oauth2.rfc6749 import (
     MissingAuthorizationError,
     HttpRequest,
 )
-from authlib.oauth2.rfc6750 import BearerTokenValidator as _BearerTokenValidator
 
 
 class CustomeResourceProtector(_ResourceProtector):
