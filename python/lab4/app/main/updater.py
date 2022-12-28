@@ -7,7 +7,7 @@ from .utils import refreshToken
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(update_token, "interval", seconds=10)
+    scheduler.add_job(update_token, "interval", seconds=30)
     scheduler.start()
 
 
