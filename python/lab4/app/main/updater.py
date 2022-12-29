@@ -1,6 +1,6 @@
-from django.contrib.sessions.models import Session
 from django.contrib.sessions.backends.db import SessionStore
 from apscheduler.schedulers.background import BackgroundScheduler
+from django.conf import settings
 
 from .utils import refreshToken
 
@@ -12,7 +12,7 @@ def start():
 
 
 def update_token():
-    session = SessionStore(session_key="ezfrews0mtg9a9nzjdpg53mpyaryh3a8")
+    session = SessionStore(session_key=settings.SESSION_KEY)
     try:
         refresh_token = session["refresh_token"]
         _, data = refreshToken(refresh_token)

@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from authlib.integrations.django_oauth2 import ResourceProtector
+from django.conf import settings
 
 from .utils import authenticate, getUserId, getUserInfo, createUser
 from . import validator
@@ -8,8 +7,8 @@ from .decorators import CustomeResourceProtector
 
 require_auth = CustomeResourceProtector()
 validator = validator.Auth0JWTBearerTokenValidator(
-    "dev-b34fyn1cot22je3i.us.auth0.com",
-    "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/",
+    settings.AUTH0_DOMAIN,
+    settings.AUTH0_API_AUDIENCE,
 )
 require_auth.register_token_validator(validator)
 

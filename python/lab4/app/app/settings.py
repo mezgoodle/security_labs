@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -122,3 +124,24 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+
+# Load Auth0 application settings into memory
+AUTH0_DOMAIN = os.environ.get("AUTH0_DOMAIN", "dev-b34fyn1cot22je3i.us.auth0.com")
+AUTH0_CLIENT_ID = os.environ.get("AUTH0_CLIENT_ID", "C4dFTmHwKV8DXaXkBoCX4RLAoENBsstZ")
+AUTH0_CLIENT_SECRET = os.environ.get(
+    "AUTH0_CLIENT_SECRET",
+    "Hiuy2N4AdwU-zezmgVKhKHhf-5TINv_82RvwpESbV25ddoUZZ88pRWBXmQVCJ7GB",
+)
+AUTH0_API_AUDIENCE = os.environ.get(
+    "AUTH0_API_AUDIENCE", "https://dev-b34fyn1cot22je3i.us.auth0.com/api/v2/"
+)
+SESSION_KEY = os.environ.get("SESSION_KEY", "ezfrews0mtg9a9nzjdpg53mpyaryh3a8")
+API_TOKEN = os.environ.get(
+    "TOKEN",
+    "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImppYzdtZHZweTFKMEZrZlA0d1ZQXyJ9.eyJpc3MiOiJodHRwczovL2Rldi1iMzRmeW4xY290MjJqZTNpLnVzLmF1dGgwLmNvbS8iLCJzdWIiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WkBjbGllbnRzIiwiYXVkIjoiaHR0cHM6Ly9kZXYtYjM0ZnluMWNvdDIyamUzaS51cy5hdXRoMC5jb20vYXBpL3YyLyIsImlhdCI6MTY3MjMwMDY2MCwiZXhwIjoxNjcyMzg2NjYwLCJhenAiOiJDNGRGVG1Id0tWOERYYVhrQm9DWDRSTEFvRU5Cc3N0WiIsInNjb3BlIjoicmVhZDp1c2VycyB1cGRhdGU6dXNlcnMgY3JlYXRlOnVzZXJzIiwiZ3R5IjoiY2xpZW50LWNyZWRlbnRpYWxzIn0.BYd4yjw3SoOpmRi_b_RdwGWcwEJ7l0wbrCgm2uHs_ROsHX-3pfR_gIH51NvRTF61EnH2O1fabF5iA4pnn4NY9nQQAyahI2DfEqGjDDjBMi1kgDnb_kmHgZhbmao9NBe-eIBZh972oUUSykN-redQ3shIhHpUntNZOPaZ3vNKL_1ouBxRofKzCd_Cw768ZEcEIHQyd0rd7G45jDzpd2WPpR-8MtRAbpwSpyykQ7ckUE4PwH5I7MI6oppLshG4VjAYdXBtn3q4ptf6ay25lEx4deCMztt9MYiFHU1Q2H8LSJyWIlV4tanUztV35890_i0kfwvQ2MBA5FLBuEAOxLKhLw",
+)
