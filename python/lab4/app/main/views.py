@@ -52,6 +52,6 @@ def index(request):
         "index.html",
         context={
             "session": request.session.get("user"),
-            "pretty": json.dumps(request.session.get("user"), indent=4),
+            "user": json.dumps(request.session.get("user"), indent=4),
         },
     )
