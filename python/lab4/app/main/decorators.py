@@ -59,7 +59,7 @@ class CustomeResourceProtector(_ResourceProtector):
                         return render(
                             request,
                             "login.html",
-                            {"error": "Your token has been expired"},
+                            {"error": "Your token has been expired or invalid"},
                         )
                 return f(request, *args, **kwargs)
 
